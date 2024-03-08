@@ -1,6 +1,13 @@
 package PS240305;
-import java.util.*;
-import java.io.*;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.StringTokenizer;
 
 public class BJ_JH7569 {
 	static int[] dx = {1,-1,0,0,0,0};
@@ -17,17 +24,18 @@ public class BJ_JH7569 {
 		 * 3. 칸을 순회하며 가장 큰 일수를 출력
 		 */
 		
+		
 		//맨 처음에 q에 현재 위치를 삽입한다.
 		//temp의 현재 위치에 현재 값을 삽입한다.
 		//temp의 앞 뒤 좌 우 위 아래를 확인한다.
 		//temp가 -1이면 안 넣고. 0이면 넣고, 다른 숫자라면 현재 수가 더 작으면 넣는다.
-				
+		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		
-		M = Integer.parseInt(st.nextToken());
-		N = Integer.parseInt(st.nextToken());
-		H = Integer.parseInt(st.nextToken());
+		M = Integer.parseInt(st.nextToken()); //5
+		N = Integer.parseInt(st.nextToken()); //3
+		H = Integer.parseInt(st.nextToken()); //1
 		
 		tomato = new int[H][N][M];
 		int maxTomato = -20000000;
@@ -54,16 +62,8 @@ public class BJ_JH7569 {
 		}
 		else {
 			zeroOK = 0;
-			for (int i = 0; i < H; i++) {
-				for (int j = 0; j < N; j++) {	
-					for (int k = 0; k < M; k++) {
-						if(tomato[i][j][k] == 1) {
-							BFS(i,j,k);
-						}
-					}
-				}
-			}
 			
+			BFS();
 			
 			for (int k2 = 0; k2 < H; k2++) {
 				for (int l = 0; l < N; l++) {
@@ -89,20 +89,28 @@ public class BJ_JH7569 {
 	}
 	
 	
-	private static void BFS(int h,int m, int n) {
+	private static void BFS() {
 		Queue<int[]> q = new LinkedList<int[]>();
 
-		int[] temp = {h,m,n, 2};
-		q.add(temp);
+		int tempX, tempY, tempZ;
 		
+		for (int i = 0; i < H; i++) {
+			for (int j = 0; j < N; j++) {	
+				for (int k = 0; k < M; k++) {
+					if(tomato[i][j][k] == 1) {
+						q.add(new int[] {i,j,k,2});
+					}
+				}
+			}
+		}
 		
 		while(!q.isEmpty()) {
 			int[] t = q.poll();
 			
 			for (int i = 0; i < 6; i++) {
-				int tempZ = t[0]+ dz[i]; //h(높이) 
-				int tempX = t[1]+ dy[i]; //행
-				int tempY = t[2]+ dx[i]; //열
+				tempZ = t[0]+ dz[i]; //h(높이) 
+				tempX = t[1]+ dy[i]; //행
+				tempY = t[2]+ dx[i]; //열
 
 				int[] tt = {tempZ, tempX, tempY, t[3]+1};
 				
@@ -110,11 +118,7 @@ public class BJ_JH7569 {
 					if(tomato[tempZ][tempX][tempY] == -1) {
 						continue;
 					}
-					else if(tomato[tempZ][tempX][tempY] == 0) {
-						tomato[tempZ][tempX][tempY] = t[3];
-						q.add(tt);
-					}
-					else if(tomato[tempZ][tempX][tempY] > t[3]) {
+					else if(tomato[tempZ][tempX][tempY] == 0 || tomato[tempZ][tempX][tempY] > t[3]) {
 						tomato[tempZ][tempX][tempY] = t[3];
 						q.add(tt);
 					}
@@ -123,3 +127,4 @@ public class BJ_JH7569 {
 		}
 	}
 }
+
