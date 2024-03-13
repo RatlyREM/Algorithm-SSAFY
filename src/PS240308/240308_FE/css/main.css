@@ -1,0 +1,93 @@
+css 코드
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+}
+
+/* 헤더 관련 스타일 */
+#header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background: #000000;
+  padding: 20px;
+}
+
+#header > a,
+#nav > a {
+  color: #ffffff;
+}
+
+/* 메인 관련 스타일 */
+#main {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+#movie__list-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 75%;
+  height: auto;
+  padding: 20px 40px;
+  gap: 20px;
+  border-right: 3px solid rgb(73, 73, 73);
+}
+
+#movie__list-box > h2 {
+  align-self: flex-start;
+}
+
+#movie-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.movie__list__info-box {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#movie_like_list-box {
+  width: 25%;
+  height: 300px;
+  position: sticky;
+  top: 0;
+  padding: 30px;
+}
+
+.like-btn {
+  padding: 10px;
+}
+
+/* 푸터 관련 스타일 */
+#footer {
+  background-color: #000000;
+}
+
+#footer__info-list {
+  display: flex;
+  gap: 20px;
+}
+
+#footer__info-list > li,
+#footer__info-list > li > a {
+  color: #ffffff;
+}
+#footer > ul {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 10px 0;
+}
