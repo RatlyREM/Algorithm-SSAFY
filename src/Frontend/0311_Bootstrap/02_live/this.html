@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let dog = {
+        species: "보더콜리",
+        eat() {console.log(`우리집 멍멍이는 ${this.species} 종이다`, this);}
+    }
+
+    // dog.eat();
+
+    // let globalFunc = dog.eat;
+    let globalFunc = dog.eat.bind(dog);
+    // globalFunc();
+
+    // let timer = {
+    //     current: 1000,
+    //     alarm: function (timeout) {
+    //         console.log("alarm()의 this", this);
+    //         let that = this;
+    //         setTimeout(function() {
+    //             console.log("settimeout의 this", that.current, this);	
+    //         }, timeout * 1000);
+    //     }
+    // }
+
+    // timer.alarm();
+
+    let cat = {
+        name: "고리",
+        eat: function() { console.log(`${this.name}: 밥 먹기`, this); },
+        sleep: () => { console.log(`${this.name}: 자러 가기`, this); }
+    }
+
+    // cat.sleep();
+
+    let cat2 = {
+        species: "고양이",
+        name: "고리",
+        eat: function() { console.log(`${this.name}: 밥 먹기`, this); },
+        sleep: () => { console.log(`${this.name}: 자러 가기`, this); },
+        info: function() { 
+            let getLen = () => this.species.length;
+            console.log(`${this.species}는 총${getLen()}글자`, this); 
+        }
+    }
+
+    cat2.info();
+</script>
+</html>
