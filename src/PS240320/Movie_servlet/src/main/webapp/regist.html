@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>SSAFY 영화 관리</h1>
+
+    <fieldset>
+      <legend>영화 정보 입력</legend>
+
+      <form id="form_param" method="POST" action="">
+        <div>
+          <div>
+            <label for="title" style="display: inline-block; width: 70px">
+              제목
+            </label>
+            <input type="text" name="title" id="title" />
+          </div>
+
+          <div>
+            <label for="director" style="display: inline-block; width: 70px">
+              감독
+            </label>
+            <input type="text" name="director" id="director" />
+          </div>
+
+          <div>
+            <label for="genre" style="display: inline-block; width: 70px">
+              장르
+            </label>
+            <input type="text" name="genre" id="genre" />
+          </div>
+
+          <div>
+            <label for="runningTime" style="display: inline-block; width: 70px">
+              상영 시간
+            </label>
+            <input type="text" name="runningTime" id="runningTime" />
+          </div>
+
+          <div>
+            <button id="btn_send" type="submit">등록</button>
+            <button type="reset">초기화</button>
+          </div>
+        </div>
+      </form>
+    </fieldset>
+
+    <script>
+      document
+        .querySelector("#btn_send")
+        .addEventListener("click", function () {
+          let form = document.querySelector("#form_param");
+          form.setAttribute("action", "/movie/main");
+          form.submit();
+        });
+    </script>
+  </body>
+</html>
