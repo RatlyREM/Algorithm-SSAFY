@@ -32,8 +32,6 @@ public class Main {
 			family[b][a] = 1;
 		}
 		
-		
-		
 		//x부터 출발해서 bfs
 		
 		Queue<Integer> q = new LinkedList<Integer>();
@@ -46,27 +44,16 @@ public class Main {
 		while(!q.isEmpty()) {
 			count++;
 			
-//			System.out.print("큐 출력: " + q.size() + "개 :: " );
-//			for (int i : q) {
-//				System.out.print(i + " ");
-//			}
-//			System.out.println();
-			
 			int qSize = q.size();
 			
 			for (int j = 0; j < qSize; j++) {
 				int current = q.poll();
-				
-				//System.out.println("current: " + current);
-				
-				
-				
+
 				for (int i = 1; i <= n; i++) {
 					if(family[current][i] == 1) {
 						if(visited[i] == 0) {
 							visited[i] = 1;
 							
-							//System.out.println(i +"추가!!");
 							q.add(i);
 							
 							if(i == y) {
@@ -77,8 +64,6 @@ public class Main {
 					}
 				}
 			}
-			
-			//System.out.println("끝");
 		}
 		
 		System.out.println("-1");
