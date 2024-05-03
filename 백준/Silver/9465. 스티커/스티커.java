@@ -1,28 +1,7 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.PriorityQueue;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
 
 public class Main {
-	static int[] dx = {-1,0,1,0};
-	static int[] dy = {0,-1,0,1};
-	
-	public static class Stick {
-		int x;
-		int y;
-		int score;
-		
-		public Stick(int x, int y, int score) {
-			this.x = x;
-			this.y = y;
-			this.score = score;
-		}
-	}
-	
-	static int[] visited;
-	
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
@@ -41,13 +20,8 @@ public class Main {
 				
 				for (int k = 0; k < n; k++) {
 					sticker[j][k] = Integer.parseInt(st.nextToken());
-					//입력 받기
 				}
 			}
-			
-//			for (int j = 0; j < sticker.length; j++) {
-//				System.out.println(Arrays.toString(sticker[j]));
-//			}
 			
 			
 			//초기 세팅
@@ -60,24 +34,12 @@ public class Main {
 			}
 			
 			//시작
-			for (int k = 2; k < n; k++) {
-				/*
-				 * sticker[0][k]와. sticker[1][k-1], sticker[1][k-2]의 합 중 큰 것
-				 * sticker[1][k]와. sticker[0][k-1], sticker[0][k-2]의 합 중 큰 것
-				 */
-				
+			for (int k = 2; k < n; k++) {	
 				result[0][k] = Math.max(sticker[0][k]+result[1][k-1], sticker[0][k]+result[1][k-2]);
 				result[1][k] = Math.max(sticker[1][k]+result[0][k-1], sticker[1][k]+result[0][k-2]);
-				
-//				for (int j = 0; j < result.length; j++) {
-//					System.out.println(Arrays.toString(result[j]));
-//				}
 			}
 			
 			System.out.println(Math.max(result[0][n-1], result[1][n-1]));
-		
-		
-		
 		}
 	
 	}
