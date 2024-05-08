@@ -3,9 +3,7 @@ import java.util.*;
 
 public class Main {
 	public static void main(String[] args) throws NumberFormatException, IOException {
-		/*
-		 * 각 열을 스택으로 하고, 각 stack의 head들을 비교한 후 가장 큰 stack을 pop한다.
-		 */
+		//각 열을 스택으로 하고, 각 stack의 head들을 비교한 후 가장 큰 stack을 pop한다.
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
@@ -29,10 +27,11 @@ public class Main {
 		
 		
 		int result = 0;
+		int temp, maxHead;
 		
 		for (int i = 0; i < N; i++) {
-			int temp = Integer.MIN_VALUE;
-			int maxHead = -1;
+			temp = Integer.MIN_VALUE;
+			maxHead = -1;
 			
 			//각 stack의 head들 검사하고 최댓값 찾기
 			for (int j = 0; j < N; j++) {
@@ -46,6 +45,5 @@ public class Main {
 		}
 		
 		System.out.println(result);
-
 	}
 }
