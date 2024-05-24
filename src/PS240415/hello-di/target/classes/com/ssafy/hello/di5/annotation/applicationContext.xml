@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd">
+
+	
+	<context:component-scan base-package="com.ssafy.hello.di5.annotation"></context:component-scan>
+	
+<!-- 	<bean id="kor" class="com.ssafy.hello.di5.annotation.HelloMessageKor"></bean>
+ 이렇게 하나하나 bean 선언하다가는 끝도 없음!!!-> 따라서 위의 context: 를 사용 -->
+ 	
+ 
+</beans>
+

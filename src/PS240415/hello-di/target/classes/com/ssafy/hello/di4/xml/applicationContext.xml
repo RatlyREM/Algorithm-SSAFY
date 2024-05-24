@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="kor" class="com.ssafy.hello.di4.xml.HelloMessageKor"></bean>
+	<!-- HelloMessageKor kor = new HelloMessageKor(); 한 것과 같음-->
+	
+	<!-- <bean id="kor" class="com.ssafy.hello.di4.xml.HelloMessageKor" scope="singleton"></bean>
+	<bean id="kor" class="com.ssafy.hello.di4.xml.HelloMessageKor" scope="prototype"></bean>  기본은 싱글톤.
+	프로토타입으로 만들일이 생기면(dto) 그냥 new로 직접 만들어서 쓴다.-->
+	
+	<bean id="eng" class="com.ssafy.hello.di4.xml.HelloMessageEng">
+	
+	</bean>
+</beans>
