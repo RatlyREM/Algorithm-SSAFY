@@ -1,8 +1,6 @@
 import java.awt.Point;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
 
 public class Main {
 	static int total = 0;
@@ -11,12 +9,8 @@ public class Main {
 	
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		/*
-		 * 1. 그 방향 그대로 밀기.
-		 * (가로는 +0,+1 세로는 +1,+0 대각선은 +1,+1)
-		 * 
-		 * 2. 회전
-		 * (가로는 
-		 * 
+		 * 현재 파이프가 가로,세로,대각선일 때를 각각 파라미터로 받아서,
+		 * 파라미터의 값에 따라 비어있는지 체크할 부분을 달리하면 된다.
 		 */
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
