@@ -48,11 +48,9 @@ public class Main {
 				if(map[i][j] != 0) {
 					int tempDepth = bfs2(i,j);
 					
-					//System.out.println(i + " " + j + " " + tempDepth);
 					if(tempDepth != -1) {
 						if(tempDepth < minDepth) minDepth = tempDepth;
 					}
-					
 					
 					//visited 초기화 필요
 					for (int k = 0; k < N; k++) {
@@ -64,19 +62,6 @@ public class Main {
 		}
 		
 		System.out.println(minDepth);
-		
-		
-		
-//		for (int i = 0; i < N; i++) {
-//			for (int j = 0; j < N; j++) {
-//				System.out.print(map[i][j] + " ");
-//				
-//			}
-//			System.out.println();
-//		}
-		
-		
-		
 	}
 	
 	static int bfs2(int a, int b) {
@@ -120,8 +105,6 @@ public class Main {
 			
 			depth++;
 		}
-		
-		//System.out.println("불가능!!");
 		return -1;
 	}
 	
