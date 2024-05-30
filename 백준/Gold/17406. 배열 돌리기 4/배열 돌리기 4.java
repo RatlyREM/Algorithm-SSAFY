@@ -64,8 +64,7 @@ public class Main {
 	static void perm(int K, int depth) {
 		if(depth == K) {
 			//고르기 성공!!
-			//System.out.println(Arrays.toString(output));
-			
+		
 			int[][] arr = new int[N+1][M+1];
 			
 			//초기 배열 복사.
@@ -80,13 +79,9 @@ public class Main {
 				//이번에 회전할 방법!!
 				Rotate tempR = rotateList.get(output[i]);
 				
-				//System.out.println("회전은, " + tempR.rx + " " + tempR.ry + " " + tempR.count + " !!!!");
 				for (int j = 1; j <= tempR.count; j++) {
 					int start = arr[tempR.rx-j][tempR.ry-j];
-					
-					//int t1 = arr[tempR.rx-j + 1][tempR.ry-j];
-					
-					//System.out.println();
+
 					//왼쪽 아래
 					for (int l = tempR.rx-j + 1; l < tempR.rx-j + 1 + j*2; l++) {
 						arr[l-1][tempR.ry-j] = arr[l][tempR.ry-j]; 
@@ -110,16 +105,6 @@ public class Main {
 					
 					arr[tempR.rx-j][tempR.ry-j+1] = start;
 					
-					
-					//System.out.println("회전 한번 끝!!!!!!!!!!!");
-					
-//					for (int l = 1; l <= 5; l++) {
-//						for (int l2 = 1; l2 <= 6; l2++) {
-//							System.out.print(arr[l][l2] + " ");
-//							
-//						}
-//						System.out.println();
-//					}
 				}	
 			}
 		
@@ -133,12 +118,7 @@ public class Main {
 				
 				if(total< minTotal) minTotal = total;
 			}
-//			
-//			System.out.println("이번 회전의 최솟값은, " + minTotal);
-//			
-//			
-//			
-//			System.out.println("다 끝나고, 리턴!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+			
 			return;
 		}
 		
