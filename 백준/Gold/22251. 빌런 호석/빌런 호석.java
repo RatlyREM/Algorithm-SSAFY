@@ -7,6 +7,7 @@ public class Main {
 	static String realX;
 	static String resultLED;
 	static List<Integer> resultList;
+	static StringBuilder sb;
 	
 	static int[][] change = {{0, 4, 3, 3, 4, 3, 2, 3, 1, 2,},
 			{4, 0, 5, 3, 2, 5, 6, 1, 5, 4},
@@ -25,7 +26,7 @@ public class Main {
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		led = new ArrayList<Integer>();
 		resultList = new ArrayList<Integer>();
-		
+	
 		N = Integer.parseInt(st.nextToken());
 		K = Integer.parseInt(st.nextToken());
 		P = Integer.parseInt(st.nextToken());
@@ -41,11 +42,6 @@ public class Main {
 		
 		perm(0, 0);
 		
-		
-//		for(int i: resultList) {
-//			System.out.print(i + " ");
-//		}
-//		System.out.println();
 		System.out.println(resultList.size());
 	}
 	
@@ -55,43 +51,10 @@ public class Main {
 		if(depth== K && total > P) return;
 		
 		if(depth == K && total <= P) {
-			//끝
-			
-//			for(int a : led) System.out.print(a + " ");
-//			System.out.println();
-			
 			resultLED= "";
 			//첫 자리에서 돌다가 만나면, 그대로 다음 자리로. 끝 자리까지 완료되면 1이상 N이하인지 확인
 			makeLED(0);
-			
-			
-//			int total2 = 0;
-//			
-//			String tempX = "";
-//			
-//			for (int i = 0; i < K; i++) {
-//				int temp = realX.charAt(i)- '0';
-//				int count = led.get(i);
-//				int c = 0;
-//				boolean flag = false;
-//				
-//				//다르게 바꿨는데 같은 수가 돼버릴 가능성?
-//				for (int j = 0; j < 10; j++) {
-//					if(change[temp][j] == count) {
-//						tempX += Integer.toString(j);
-//						c++;
-//						flag = true;
-//					}
-//				}
-//				
-//				if(flag == false) return;
-//				
-//				if(total2 == 0) total2 += c;
-//				else total2 *= c;
-//				
-//			}
-//			
-//			System.out.println(total2 + " 가지 나옴!!");
+
 			return;
 		}
 		
@@ -107,7 +70,6 @@ public class Main {
 	static void makeLED(int now) {
 		if(now == K) {
 			//숫자 완성
-			//System.out.println("결과: " + resultLED);
 			int temp = Integer.parseInt(resultLED);
 			
 			if(temp >=1 && temp<= N) {
@@ -119,22 +81,21 @@ public class Main {
 		
 		int temp = realX.charAt(now)- '0';
 		int count = led.get(now);
-		boolean flag = false;
+		//boolean flag = false;
 		
 		for (int i = 0; i < 10; i++) {
 			if(change[temp][i] == count) {
 				resultLED += Integer.toString(i);
 				
-				//System.out.println(resultLED + " " + (now+1));
 				makeLED(now+1);
-				
+			
 				resultLED = resultLED.substring(0, resultLED.length()-1);
 				
-				flag = true;
+				//flag = true;
 			}
 			
 		}
 		
-		if(flag == false) return;
+		//if(flag == false) return;
 	}
 }
