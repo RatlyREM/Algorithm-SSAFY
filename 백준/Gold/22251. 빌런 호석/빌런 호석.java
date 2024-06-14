@@ -6,8 +6,9 @@ public class Main {
 	static List<Integer> led;
 	static String realX;
 	//static String resultLED;
-	static List<Integer> resultList;
+	//static List<Integer> resultList;
 	static StringBuilder sb;
+	static int totalCount = 0;
 	
 	static int[][] change = {{0, 4, 3, 3, 4, 3, 2, 3, 1, 2,},
 			{4, 0, 5, 3, 2, 5, 6, 1, 5, 4},
@@ -25,7 +26,7 @@ public class Main {
 		
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		led = new ArrayList<Integer>();
-		resultList = new ArrayList<Integer>();
+		//resultList = new ArrayList<Integer>();
 		sb = new StringBuilder();
 		
 		N = Integer.parseInt(st.nextToken());
@@ -43,7 +44,8 @@ public class Main {
 		
 		perm(0, 0);
 		
-		System.out.println(resultList.size());
+		//System.out.println(resultList.size());
+		System.out.println(totalCount);
 	}
 	
 	static void perm(int depth, int total) {
@@ -76,7 +78,8 @@ public class Main {
 			int temp = Integer.parseInt(String.valueOf(sb));
 			
 			if(temp >=1 && temp<= N) {
-				resultList.add(temp);
+				//resultList.add(temp);
+				totalCount++;
 			}
 			
 			return;
