@@ -5,7 +5,7 @@ public class Main {
 	static int N,K,P,X;
 	static List<Integer> led;
 	static String realX;
-	static String resultLED;
+	//static String resultLED;
 	static List<Integer> resultList;
 	static StringBuilder sb;
 	
@@ -26,7 +26,8 @@ public class Main {
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		led = new ArrayList<Integer>();
 		resultList = new ArrayList<Integer>();
-	
+		sb = new StringBuilder();
+		
 		N = Integer.parseInt(st.nextToken());
 		K = Integer.parseInt(st.nextToken());
 		P = Integer.parseInt(st.nextToken());
@@ -51,7 +52,7 @@ public class Main {
 		if(depth== K && total > P) return;
 		
 		if(depth == K && total <= P) {
-			resultLED= "";
+			//resultLED= "";
 			//첫 자리에서 돌다가 만나면, 그대로 다음 자리로. 끝 자리까지 완료되면 1이상 N이하인지 확인
 			makeLED(0);
 
@@ -70,7 +71,9 @@ public class Main {
 	static void makeLED(int now) {
 		if(now == K) {
 			//숫자 완성
-			int temp = Integer.parseInt(resultLED);
+			//int temp = Integer.parseInt(resultLED);
+			
+			int temp = Integer.parseInt(String.valueOf(sb));
 			
 			if(temp >=1 && temp<= N) {
 				resultList.add(temp);
@@ -81,21 +84,19 @@ public class Main {
 		
 		int temp = realX.charAt(now)- '0';
 		int count = led.get(now);
-		//boolean flag = false;
 		
 		for (int i = 0; i < 10; i++) {
 			if(change[temp][i] == count) {
-				resultLED += Integer.toString(i);
+				//resultLED += Integer.toString(i);
+				sb.append(i);
 				
 				makeLED(now+1);
 			
-				resultLED = resultLED.substring(0, resultLED.length()-1);
+				sb.deleteCharAt(sb.length()-1);
 				
-				//flag = true;
+				//resultLED = resultLED.substring(0, resultLED.length()-1);
 			}
 			
 		}
-		
-		//if(flag == false) return;
 	}
 }
