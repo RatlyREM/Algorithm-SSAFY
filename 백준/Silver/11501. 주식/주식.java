@@ -22,7 +22,7 @@ public class Main {
 		int T = Integer.parseInt(br.readLine());
 		
 		for (int i = 0; i < T; i++) {
-			Queue<Point> q = new LinkedList<Point>();
+			//Queue<Point> q = new LinkedList<Point>();
 			//PriorityQueue<Point> pq = new PriorityQueue<Point>((o1, o2) -> o2.y-o1.y);
 			List<Integer> li = new ArrayList<Integer>();
 			
@@ -34,25 +34,14 @@ public class Main {
 			st = new StringTokenizer(br.readLine());
 			
 			
-			
 			for (int j = 0; j < N; j++) {
 				Point temp = new Point(j,Integer.parseInt(st.nextToken())); 
 				
-				q.add(temp); 
+				//q.add(temp); 
 				li.add(temp.y);
 			}
 			
 			int[] behindMax = new int[N];
-			
-			int count = 0;
-			
-//			while(!pq.isEmpty()) {
-//				Point temp = pq.poll();
-//				
-//				behindMax[count] = temp.y;
-//				
-//				count++;
-//			}
 			
 			int max = li.get(N-1);
 			
@@ -63,39 +52,24 @@ public class Main {
 				
 			}
 			
-			
-			count = 0;
-			while(!q.isEmpty()) {
-				Point a = q.poll();
+			for (int j = 0; j < li.size(); j++) {
+				int a = li.get(j);
 				
-				//System.out.println(q.size() + " " + pq.size());
+				int b = (j>= N) ? a : behindMax[j];
 				
-				//if(q.isEmpty() ) break;
-				int b = (count>= N) ? a.y : behindMax[count];
-				
-				//System.out.println("a:" +a.x + " " + a.y + " b: " + b);
-				
-				if(a.y >= b) {
+				if(a >= b) {
 					//팔기
-					//System.out.println("팔기!");
-					total += buy * a.y;
+					total += buy * a;
 					buy = 0;
 				}
 				else {
 					//사기
-					//System.out.println("사기!");
-					total -= a.y;
+					total -= a;
 					buy++;
 				}
-				
-				//System.out.println("현재 이득: " + total);
-				count++;
 			}
 			
-			
-			
 			System.out.println(total);
-			//System.out.println();
 		}
 		
 		
