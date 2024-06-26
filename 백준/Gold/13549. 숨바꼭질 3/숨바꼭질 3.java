@@ -35,10 +35,10 @@ public class Main {
 		while(!pq.isEmpty()) {
 			Point temp = pq.poll();
 			
-//			if(temp.x == K) {
-//				System.out.println(cost[temp.x]);
-//				break;
-//			}
+			if(temp.x == K) {
+				System.out.println(cost[temp.x]);
+				break;
+			}
 			
 			visited[temp.x] = 1;
 			
@@ -78,7 +78,7 @@ public class Main {
 			}
 		}
 		
-		System.out.println(cost[K]);
+		//System.out.println(cost[K]);
 	
 	}
 }
