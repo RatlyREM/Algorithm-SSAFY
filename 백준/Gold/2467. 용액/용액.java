@@ -102,18 +102,18 @@ public class Main {
 			return mid;
 		}
 		
-//		if(solution.get(mid) == value) {
-//			return mid;
-//		}
-		if(solution.get(mid) <= value) {
+		if(solution.get(mid) == value) {
+			return mid;
+		}
+		else if(solution.get(mid) < value) {
 			//System.out.println("오른쪽~");
 			return bs(mid+1, end, value);
 		}
-		else if(solution.get(mid) > value){
+		else {
 			//System.out.println("왼쪽~");
 			return bs(start, mid, value);
 		}
 		
-		return -1;
+		//return -1;
 	}
 }
