@@ -11,14 +11,7 @@ public class Main {
 		 * 
 		 * 1개 -> S
 		 * 2개 -> S C
-		 * 3개 -> S
-		 * 		  S C S
-		 * 4개 -> S C
-		 * 		 S C
-		 * 		 S C S C
-		 * 
-		 * 5개 -> S C S
-		 * 		  S S S S S
+		 * 이후는 짝수면 CY, 홀수면 SK
 		 */
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
