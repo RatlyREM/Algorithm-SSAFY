@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.*;
 
 public class Main {
@@ -11,7 +9,6 @@ public class Main {
 		 * 3. 누적합을 정렬한다.
 		 * 4. 정렬한 누적합을 투 포인터로 일정 값 이상을 찾는다. 
 		 */
-		
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
@@ -30,17 +27,9 @@ public class Main {
 		for (int i = 0; i < N; i++) {
 			arr[i] = Integer.parseInt(st.nextToken());
 			arrSum.add(total + arr[i]);
-			//arrSum[i] = total + arr[i];
 			total += arr[i];
 		}
 		
-		Collections.sort(arrSum);
-		
-//		for(int i: arrSum) {
-//			System.out.print(i + " ");
-//		}
-//		System.out.println();
-		//각각 0부터 이어진거 검사, 부분합 검사, 아니면 0
 		int start = 0;
 		int end = 1;
 		int minNum = Integer.MAX_VALUE;
@@ -48,62 +37,31 @@ public class Main {
 		//만약 end가 이미 범위를 넘어섰는데 부분합은 S보다 작다면,
 		//end 늘리지 말고 break해야함!!
 		while(true) {
-			//System.out.println("start:  " + start + " end: " + end );
-			
 			if(end >= N) {
-				if(arrSum.get(N-1)- arrSum.get(start) < S) {
-					break;
-				}
+				if(arrSum.get(N-1)- arrSum.get(start) < S) break;
 				else {
-					
-					//System.out.println("끝부분에서 바뀌: "+ minNum + " " + (N-1-start));
 					minNum = Math.min(minNum, (N-1)-start);
-					
 					start++;
 				}
 			}
 			else {
-				if(arrSum.get(end)- arrSum.get(start) < S) {
-					end++;
-				}
-				else if(arrSum.get(end)- arrSum.get(start) >= S) {
-					
-					//System.out.println("걍 바뀌: "+ minNum + " " + (end-start));
-					
+				if(arrSum.get(end)- arrSum.get(start) < S) end++;
+				else {
 					minNum = Math.min(minNum, end-start);
 					start++;
 				}
 			}
 		}
 		
-		//System.out.println(minNum);
-		
-//		int start = 0;
-//		int end = N-1;
-//		int minNum = Integer.MAX_VALUE;
-//		
-//		while(start < end) {
-//			int temp = arrSum.get(end) - arrSum.get(start);
-//			if(temp < S) {
-//				start++;
-//			}
-//			else {
-//				end--;
-//				minNum = Math.min(minNum, end-start);
-//			}
-//		}
-//		
-//		
+		//맨 처음부터의 부분합 최솟값 검사
 		for (int i = 0; i < N; i++) {
 			if(arrSum.get(i) >= S) {
 				minNum = Math.min(minNum, i+1);
 			}
-			
 		}
-		if(minNum == Integer.MAX_VALUE) System.out.println(0);
-		else System.out.println(minNum);
 		
+		if(minNum == Integer.MAX_VALUE) minNum = 0;
 		
-		
+		System.out.println(minNum);
 	}
 }
