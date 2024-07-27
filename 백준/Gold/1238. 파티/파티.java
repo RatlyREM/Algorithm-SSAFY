@@ -45,16 +45,10 @@ public class Main {
 			xToI[i] = temp[i];
 		}
 		
-		//System.out.println(Arrays.toString(xToI));
-		
-		
-		
 		for (int i = 1; i <= N; i++) {
 			//i-> X, X-> i의 최단거리 합을 재야 함.
-			if(true) {
+			if(i != X) {
 				int total = dijk(i)[X] + xToI[i];
-				//System.out.println(xToI[i] + " 가 X에서 i로의 최소, " + total + " 이 합");
-				//System.out.println("total: " + total);
 				maxTotal = Math.max(maxTotal, total);	
 			}
 			
@@ -64,7 +58,7 @@ public class Main {
 	}
 
 	private static int[] dijk(int i) {
-		Arrays.fill(visited, 0);
+		visited = new int[N+1];
 		Arrays.fill(minArr, Integer.MAX_VALUE);
 		
 		minArr[i] = 0;
@@ -73,25 +67,24 @@ public class Main {
 		
 		while(!pq.isEmpty()) {
 			Point temp = pq.poll();
-			//System.out.println(temp.x+"를 골랐습니다!!! 처음에");
-			visited[temp.x] = 1;
 			
-			for (int j = 1; j <= N; j++) {
-				//System.out.println(j + "에서 함!!!!!!!!!!!!!!!!!!!");
-				if(graph[temp.x][j] != 0) {
-					//System.out.println(minArr[temp.x] +"과 "+graph[temp.x][j] );
-					int t = minArr[temp.x] + graph[temp.x][j];
-					
-					if(t < minArr[j]) {
-						//System.out.println(j +"에서 " + t+"를 " + minArr[j]+ "에 대체해서 넣");
-						minArr[j] = t;
+			if(visited[temp.x] == 0) {
+				visited[temp.x] = 1;
+				
+				for (int j = 1; j <= N; j++) {
+					if(graph[temp.x][j] != 0) {
+						int t = minArr[temp.x] + graph[temp.x][j];
 						
-						if(visited[j] == 0)
+						if(t < minArr[j]) {
+							minArr[j] = t;
 							pq.add(new Point(j, t));
+						}
 					}
 				}
 				
 			}
+			
+			
 			
 		}
 		
