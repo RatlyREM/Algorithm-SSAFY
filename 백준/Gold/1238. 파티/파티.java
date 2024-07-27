@@ -77,7 +77,10 @@ public class Main {
 						
 						if(t < minArr[j]) {
 							minArr[j] = t;
-							pq.add(new Point(j, t));
+							
+							if(visited[j] == 0) {
+								pq.add(new Point(j, t));
+							}
 						}
 					}
 				}
