@@ -6,6 +6,7 @@ public class Main {
 	static int N;
 	static int maxTotal= -1;
 	static int[][] graph;
+	static int[][] reverseGraph;
 	static int[] visited;
 	static int[] minArr;
 	static PriorityQueue<Point> pq;
@@ -28,27 +29,43 @@ public class Main {
 		visited = new int[N+1];
 		minArr = new int[N+1];
 		graph = new int[N+1][N+1];
+		reverseGraph = new int[N+1][N+1];
 		pq = new PriorityQueue<Point>((o1, o2) ->  {
 			return o1.y- o2.y;
 		});
 		
 		for (int i = 0; i < M; i++) {
 			st = new StringTokenizer(br.readLine());
+			int a = Integer.parseInt(st.nextToken());
+			int b = Integer.parseInt(st.nextToken());
+			int c = Integer.parseInt(st.nextToken());
 			
-			graph[Integer.parseInt(st.nextToken())][Integer.parseInt(st.nextToken())] = Integer.parseInt(st.nextToken());
+			graph[a][b] = c;
+			reverseGraph[b][a] = c;
+			
+			
 		}
 		
-		int[] temp = dijk(X);
+		int[] temp = dijk(X, graph);
 		int[] xToI = new int[N+1];
 		
 		for (int i = 1; i <= N; i++) {
 			xToI[i] = temp[i];
 		}
 		
+		int[] temp2 = dijk(X, reverseGraph);
+		int[] iToX = new int[N+1];
+		
+		for (int i = 1; i <= N; i++) {
+			iToX[i] = temp2[i];
+		}
+		
+		
+		
 		for (int i = 1; i <= N; i++) {
 			//i-> X, X-> i의 최단거리 합을 재야 함.
 			if(i != X) {
-				int total = dijk(i)[X] + xToI[i];
+				int total = iToX[i] + xToI[i];
 				maxTotal = Math.max(maxTotal, total);	
 			}
 			
@@ -57,7 +74,7 @@ public class Main {
 		System.out.println(maxTotal);
 	}
 
-	private static int[] dijk(int i) {
+	private static int[] dijk(int i, int[][] graph) {
 		visited = new int[N+1];
 		Arrays.fill(minArr, Integer.MAX_VALUE);
 		
