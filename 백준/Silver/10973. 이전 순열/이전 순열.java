@@ -1,7 +1,5 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
 
 public class Main {
 	public static void main(String[] args) throws NumberFormatException, IOException {
@@ -19,6 +17,7 @@ public class Main {
 		
 		int N = Integer.parseInt(br.readLine());
 		int[] arr = new int[N];
+		StringBuilder sb = new StringBuilder();
 		
 		st = new StringTokenizer(br.readLine());
 		
@@ -54,13 +53,14 @@ public class Main {
 			arr[t] = temp;
 			
 			for (int i = 0; i <= t; i++) {
-				System.out.print(arr[i] + " ");
+				sb.append(arr[i] + " ");
 			}
 			
 			for (int i = N-1; i >= t+1; i--) {
-				System.out.print(arr[i] + " ");
+				sb.append(arr[i] + " ");
 			}
 			
+			System.out.println(sb);
 		}
 		else {
 			System.out.println(-1);
