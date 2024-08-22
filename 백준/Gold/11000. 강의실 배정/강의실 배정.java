@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.*;
 
 public class Main {
@@ -47,78 +45,49 @@ public class Main {
 		}
 		
 		//pq에서 하나씩 뽑으면서 강의실에 붙이기
-		
 		while(!pq.isEmpty()) {
 			Croom croom = pq.poll();
 			int s1 = croom.sTime;
 			int s2 = croom.eTime;
-			//System.out.println(s1 + " 와" + s2);
-			
-			//System.out.println(hm);
+
 			//시작시간을 key로 갖는 map 요소 확인
 			if(hm.containsKey(s1)) {
-				//하나 줄이고 끝시간을 하나 추가해야함
-				int value = hm.get(s1) -1;
-				
-				if(value == 0) {
-					hm.remove(s1);
-				} else {
-					hm.put(s1, value);
-				}
-				
-				
-				//끝시간 추가
-				if(hm.containsKey(s2)) {
-					hm.put(s2, hm.get(s2)+1);
-				}
-				else {
-					hm.put(s2, 1);
-				}
+				//하나 줄이고 끝시간을 하나 추가
+				removeMap(hm);
+				addMap(s2, hm);
 			} else {
 				if(hm.isEmpty()) {
-					//System.out.println("없어서 추가!!");
 					hm.put(s2, 1);
 				}
 				else {
-					if(hm.firstKey() > s1) {
-						//끝시간 추가
-						//System.out.println("하나 더 만든다!!");
-						if(hm.containsKey(s2)) {
-							hm.put(s2, hm.get(s2)+1);
-						}
-						else {
-							hm.put(s2, 1);
-						}
-					}
-					else {
+					if(hm.firstKey() <= s1) {
 						//firstkey를 줄이고, hm에 추가
-						int value = hm.get(hm.firstKey()) -1;
-						
-						if(value == 0) {
-							hm.remove(hm.firstKey());
-						} else {
-							hm.put(hm.firstKey(), value);
-						}
-
-						//끝시간 추가
-						if(hm.containsKey(s2)) {
-							hm.put(s2, hm.get(s2)+1);
-						}
-						else {
-							hm.put(s2, 1);
-						}
+						removeMap(hm);
 					}
+					
+					addMap(s2, hm);
 				}
 			}
 		}
 		
 		int total = 0;
-		//map의 value들을 다 더하기
 		
 		for(int i :hm.keySet()) {
 			total += hm.get(i);
 		}
 		
 		System.out.println(total);
+	}
+	
+	public static void addMap(int s2, TreeMap<Integer, Integer> hm) {
+		if(hm.containsKey(s2)) hm.put(s2, hm.get(s2)+1);
+		else hm.put(s2, 1);
+	}
+	
+	public static void removeMap(TreeMap<Integer, Integer> hm) {
+		int value = hm.get(hm.firstKey()) -1;
+		
+		if(value == 0) hm.remove(hm.firstKey());
+		else hm.put(hm.firstKey(), value);
 	}
 }
