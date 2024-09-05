@@ -30,10 +30,7 @@ public class Main {
             }
         }
         
-        //BFS 시작
         System.out.println(BFS(color) + " " + BFS(rokColor));
-
-
     }
     
     static int BFS(char[][] color) {
@@ -66,7 +63,6 @@ public class Main {
 								}
 							}
 						}
-						
 					}
 				}
 			}
