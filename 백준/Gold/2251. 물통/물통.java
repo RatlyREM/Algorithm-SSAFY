@@ -31,7 +31,6 @@ public class Main {
 		int B = Integer.parseInt(st.nextToken());
 		int C = Integer.parseInt(st.nextToken());
 		
-		List<Integer> li = new ArrayList<>();
 		HashSet<Integer> hs = new HashSet<>();
 		
 		visited = new int[A+1][B+1][C+1];
@@ -46,8 +45,9 @@ public class Main {
 			int b = temp.y;
 			int c = temp.z;
 			
-			
-			if(a== 0) if(!li.contains(c)) li.add(c);
+			if(a==0) {
+				if(!hs.contains(c)) hs.add(c);
+			}
 			
 			//A->B
 			Point p = change(a,b,B);
@@ -74,6 +74,7 @@ public class Main {
 			goBFS(a, p.y, p.x);
 		}
 		
+		List<Integer> li = new ArrayList<>(hs);
 		Collections.sort(li);
 		for(int i: li) System.out.print(i + " ");
 	}
