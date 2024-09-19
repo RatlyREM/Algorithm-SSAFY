@@ -1,7 +1,5 @@
 import java.awt.Point;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.*;
 
 public class Main {
@@ -51,8 +49,6 @@ public class Main {
 			while(!q.isEmpty()) {
 				int qSize = q.size();
 				
-				//System.out.println(q);
-				
 				for (int k = 0; k < qSize; k++) {
 					int temp = q.poll();
 					
@@ -67,7 +63,6 @@ public class Main {
 				
 				depth++;
 			}
-			//System.out.println("끝");
 			
 			//depth 최솟값 계산
 			minDepth = Math.min(minDepth, depth);
@@ -77,9 +72,7 @@ public class Main {
 		int total = 0;
 		StringBuilder sb = new StringBuilder();
 		
-		
 		for (int i = 0; i < depthList.size(); i++) {
-			//System.out.println(depthList.get(i) + " ");
 			if(depthList.get(i).y == minDepth) {
 				total++;
 				sb.append(depthList.get(i).x + " ");
