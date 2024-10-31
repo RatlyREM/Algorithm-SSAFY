@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.*;
 
 public class Main {
@@ -26,10 +24,9 @@ public class Main {
 		List<Integer>[] arr = new List[n];
 		parent = new int[n];
 		
-		Arrays.fill(parent, -1);
 		for (int i = 0; i < n; i++) {
 			arr[i] = new ArrayList<>();
-			//parent[i] = i;
+			parent[i] = i;
 		}
 		
 		
@@ -39,14 +36,6 @@ public class Main {
 			int end = Integer.parseInt(st.nextToken());
 			
 			if(flag == 0) {
-				//parent배열 설정
-				//parent = 
-				
-//				//parent배열 초기화
-//				for (int j = 0; j < n; j++) {
-//					parent[j] = j;
-//				}
-				
 				int rootJ = find(start);
 				int rootK = find(end);
 				
@@ -58,58 +47,21 @@ public class Main {
 				else {
 					union(rootJ, rootK);
 				}
-				
-				
-				arr[start].add(end);
-				
-				//간선을 돌면서 union-find
-//				for (int j = 0; j < n; j++) {
-//					if(flag != 0) break;
-//					
-//					for(int k : arr[j]) {
-//						//j -> k 로 가는 간선임.
-//						//union 진행, 같으면 cycle 존재.
-//						
-//						int rootJ = find(j);
-//						int rootK = find(k);
-//						
-//						if(rootJ == rootK) {
-//							//cycle 발생함
-//							flag = i;
-//							break;
-//						}
-//						else {
-//							union(rootJ, rootK);
-//						}
-//					}
-//				}
 			}
-			
 		}
 		
 		System.out.println(flag);
 	}
 	
 	static int find(int a) {
-		if(parent[a] == -1) {
-			return a;
+		if(parent[a] != a) {
+			parent[a] = find(parent[a]);
 		}
-		else {
-			return parent[a] = find(parent[a]);
-		}
-		
-//		if(parent[a] != a) {
-//			parent[a] = find(parent[a]);
-//		}
-//		return parent[a];
+		return parent[a];
 	}
 	
 	static void union(int j, int k) {
-		if(j < k) {
-			parent[k] = j;
-		}
-		else {
-			parent[j] = k;
-		}
+		if(j < k) parent[k] = j;
+		else parent[j] = k;
 	}
 }
