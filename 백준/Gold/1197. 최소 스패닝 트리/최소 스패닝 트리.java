@@ -75,27 +75,7 @@ public class Main {
 				union(s,e);
 				totalCount += ver.cost;
 			}
-			
-			//모든 정점이 이어져있는지 확인!!
-			Queue<Integer> q = new LinkedList<>();
-			Arrays.fill(visited, 0);
-
-			//1부터 출발해서 BFS
-			q.add(1);
-			visited[1] = 1;
-			
-			while(!q.isEmpty()) {
-				int temp = q.poll();
-				
-				for (int i = 0; i < answer[temp].size(); i++) {
-					if(visited[answer[temp].get(i)] == 0) {
-						visited[answer[temp].get(i)] = 1;
-						q.add(answer[temp].get(i));
-					}
-				}
-			}
 		}
-		
 		
 		System.out.println(totalCount);
 		
