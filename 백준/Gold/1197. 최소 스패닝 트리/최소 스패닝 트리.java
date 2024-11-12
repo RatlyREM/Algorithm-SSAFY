@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.*;
 
 public class Main {
@@ -68,17 +66,12 @@ public class Main {
 		}
 		
 		while(!pq.isEmpty()) {
-			//pq에서 하나 추출
 			Vertex ver = pq.poll();
-			
-			//System.out.println("ver: " + ver.start + " " + ver.end + " " + ver.cost);
 			
 			int s = ver.start;
 			int e = ver.end;
 			
-			//System.out.println("s: " + s + " e: " + e);
 			if(find(s) != find(e)) {
-				//System.out.println(find(s) + " " + find(e) + "로 서로 다름!!");
 				union(s,e);
 				totalCount += ver.cost;
 			}
@@ -86,8 +79,7 @@ public class Main {
 			//모든 정점이 이어져있는지 확인!!
 			Queue<Integer> q = new LinkedList<>();
 			Arrays.fill(visited, 0);
-			
-			
+
 			//1부터 출발해서 BFS
 			q.add(1);
 			visited[1] = 1;
@@ -100,15 +92,6 @@ public class Main {
 						visited[answer[temp].get(i)] = 1;
 						q.add(answer[temp].get(i));
 					}
-				}
-			}
-			
-			//BFS 끝났으면 visited 순회
-			for (int i = 1; i < visited.length; i++) {
-				if(visited[i]== 0) break;
-				if(i== visited.length-1) {
-					//System.out.println(totalCount);
-					System.exit(0);
 				}
 			}
 		}
@@ -127,12 +110,7 @@ public class Main {
 		int rootS = find(s);
 		int rootE = find(e);
 		
-		if(rootS < rootE) {
-			parent[rootE] = rootS;
-		}
-		else {
-			parent[rootS] = rootE;
-		}
-		
+		if(rootS < rootE) parent[rootE] = rootS;
+		else parent[rootS] = rootE;
 	}
 }
