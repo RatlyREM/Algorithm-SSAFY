@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.*;
 
 public class Main {
@@ -16,15 +14,15 @@ public class Main {
 		 * 	북쪽, 서쪽으로 굴리면 처음꺼 빼서 마지막에.
 		 * 	남쪽, 동쪽으로 굴리면 마지막꺼 빼서 처음에.
 		 * 	
+		 *  서쪽, 동쪽은 한번 더 교환 필요
+		 *  
 		 * 	이동 후 공통적인 부분(1번째 인덱스)는 업데이트 필요
-		 * 
+		 *  
 		 * 이동이 끝났으면, 밑면 처리
 		 * 	1. 지도가 0이면 밑면을 지도로.
 		 * 	2. 지도가 0이 아니면 지도를 밑면으로, 해당 지도는 0으로
 		 * 
 		 * 밑면(북-남에서 마지막 인덱스) 처리가 끝났으면, 윗면을 출력.(1번 인덱스)
-		 * 
-		 * StringBuilder로 하면 될듯?
 		 */
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -66,7 +64,6 @@ public class Main {
 			int tempY = y+dy[itr];
 			
 			if(tempX >=0 && tempX <N && tempY >=0 && tempY <M) {
-				//System.out.println("도착, " + tempX + " " + tempY);
 				//이동 시작
 				if(itr == 0) {
 					//동쪽
@@ -86,8 +83,6 @@ public class Main {
 
 					NToS.set(1, WToE.get(1));
 					
-					//we의 2와, NS의 3을 교환
-					
 					int t = WToE.get(2);
 					WToE.set(2, NToS.get(3));
 					NToS.set(3, t);
@@ -100,20 +95,12 @@ public class Main {
 
 					WToE.set(1, NToS.get(1));
 				} else {
-					//System.out.println("남쪽 도착, " + tempX + " " + tempY);
 					//남쪽
 					int temp = NToS.remove(NToS.size()-1);
 					NToS.add(0, temp);
 					
 					WToE.set(1, NToS.get(1));
-					
-//					System.out.println("NToS: " + NToS.toString());
-//					System.out.println("WToE: " + WToE.toString());
-					
 				}
-				//System.out.println("NToS: " + NToS.toString());
-				//System.out.println("WToE: " + WToE.toString());
-				
 				//밑면 처리
 				if(jido[tempX][tempY] == 0) {
 					jido[tempX][tempY] = NToS.get(3);
@@ -124,8 +111,6 @@ public class Main {
 				}
 				
 				//윗면 출력
-				
-				
 				sb.append(NToS.get(1) + "\n");
 				
 				x = tempX;
